@@ -45,7 +45,7 @@
 ### プロバイダー設定
 - API Key: 必須、設定または `SENDGRID_API_KEY` 環境変数で設定可能
 - Subuser: オプション、設定または `SENDGRID_SUBUSER` 環境変数で設定可能
-- github.com/kenzo0107/sendgrid Go クライアントライブラリを使用
+- github.com/i10416/sendgrid Go クライアントライブラリを使用
 
 ### テスト要件
 - アクセプタンステストには `SENDGRID_API_KEY` に実際のSendGrid APIキーが必要
