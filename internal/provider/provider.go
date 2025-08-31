@@ -139,6 +139,7 @@ func (p *sendgridProvider) Resources(ctx context.Context) []func() resource.Reso
 		newSSOTeammateResource,
 		newClickTrackingSettingsResource,
 		newAlertResource,
+		newCustomFieldResource,
 	}
 }
 
