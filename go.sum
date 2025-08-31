@@ -554,6 +554,8 @@ github.com/i10416/sendgrid v0.0.0-20250831104926-0bb0fa9ee0b9 h1:LcFgc02Q/SyHK3i
 github.com/i10416/sendgrid v0.0.0-20250831104926-0bb0fa9ee0b9/go.mod h1:932ADKX2xGK8Y0ZhJjgcCNuh2TUmXK5PN+/O4JsfkeQ=
 github.com/i10416/sendgrid v0.0.0-20250831130431-d180a9532c69 h1:8nAUkxX1a7Bd491j6iPHYuBMSS3ZOXni5k+vuUxDGBs=
 github.com/i10416/sendgrid v0.0.0-20250831130431-d180a9532c69/go.mod h1:932ADKX2xGK8Y0ZhJjgcCNuh2TUmXK5PN+/O4JsfkeQ=
+github.com/i10416/sendgrid v0.0.0-20250831161314-f502d3c4835e h1:4bL7x8JYh05PniruKdkovQIdLXOZif0ekAAfSOiiXGI=
+github.com/i10416/sendgrid v0.0.0-20250831161314-f502d3c4835e/go.mod h1:932ADKX2xGK8Y0ZhJjgcCNuh2TUmXK5PN+/O4JsfkeQ=
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20200824232613-28f6c0f3b639/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/imdario/mergo v0.3.11/go.mod h1:jmQim1M+e3UYxmgPu/WyfjB3N3VflVyUjjjwH0dnCYA=

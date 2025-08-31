@@ -150,7 +150,7 @@ require (
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/hexops/gotextdiff v1.0.3 // indirect
 	github.com/huandu/xstrings v1.3.3 // indirect
-	github.com/i10416/sendgrid v0.0.0-20250831130431-d180a9532c69 // indirect
+	github.com/i10416/sendgrid v0.0.0-20250831161314-f502d3c4835e // indirect
 	github.com/imdario/mergo v0.3.15 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jedib0t/go-pretty v4.3.0+incompatible // indirect

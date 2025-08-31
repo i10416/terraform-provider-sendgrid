@@ -140,6 +140,7 @@ func (p *sendgridProvider) Resources(ctx context.Context) []func() resource.Reso
 		newClickTrackingSettingsResource,
 		newAlertResource,
 		newCustomFieldResource,
+		newAllowlistRuleResource,
 	}
 }
 
