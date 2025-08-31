@@ -173,46 +173,12 @@ func (r *CustomFieldResource) Read(ctx context.Context, req resource.ReadRequest
 }
 
 func (r *CustomFieldResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	// var data, state CustomFieldResourceModel
-	// resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)
-	// resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
-	// if resp.Diagnostics.HasError() {
-	// 	return
-	// }
-
-	// id := state.ID.ValueString()
-	// idInt64, err := strconv.ParseInt(id, 10, 64)
-	// if err != nil {
-	// 	resp.Diagnostics.AddError(
-	// 		"Updating CustomField",
-	// 		fmt.Sprintf("Unable to update CustomField, got error: %s", err),
-	// 	)
-	// 	return
-	// }
-
-	// o, err := r.client.UpdateCustomField(ctx, idInt64, &sendgrid.InputUpdateCustomField{
-	// 	EmailTo:    data.Name.ValueString(),
-	// 	Frequency:  data.Frequency.ValueString(),
-	// 	Percentage: data.Percentage.ValueInt64(),
-	// })
-	// if err != nil {
-	// 	resp.Diagnostics.AddError(
-	// 		"Updating CustomField",
-	// 		fmt.Sprintf("Unable to update CustomField, got error: %s", err),
-	// 	)
-	// 	return
-	// }
-
-	// data = CustomFieldResourceModel{
-	// 	ID:   types.StringValue(strconv.FormatInt(o.ID, 10)),
-	// 	Name: types.StringValue(o.Name),
-	// 	Type: types.StringValue(o.Type),
-	// }
-
-	// resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-	// if resp.Diagnostics.HasError() {
-	// 	return
-	// }
+	var data, state CustomFieldResourceModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
 func (r *CustomFieldResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
@@ -222,7 +188,17 @@ func (r *CustomFieldResource) Delete(ctx context.Context, req resource.DeleteReq
 		return
 	}
 
-	_ = state.ID.ValueInt64()
+	idint64 := state.ID.ValueInt64()
+	_, err := retryOnRateLimit(ctx, func() (interface{}, error) {
+		return nil, r.client.DeleteCustomField(ctx, idint64)
+	})
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Deleting alert",
+			fmt.Sprintf("Unable to delete alert (id: %d), got error: %s", idint64, err),
+		)
+		return
+	}
 }
 
 func (r *CustomFieldResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
