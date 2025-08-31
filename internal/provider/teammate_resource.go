@@ -14,8 +14,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/kenzo0107/sendgrid"
-	"github.com/kenzo0107/terraform-provider-sendgrid/flex"
+	"github.com/i10416/sendgrid"
+	"github.com/i10416/terraform-provider-sendgrid-plus/flex"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -98,7 +98,7 @@ These scopes can be added after the teammate accepts the invitation. To work aro
 2. After the teammate accepts the invitation, update their permissions to include these scopes
 
 Please note that SendGrid API behavior may change without notice.
-If you encounter any issues, feel free to report them via [issues](https://github.com/kenzo0107/terraform-provider-sendgrid/issues).
+If you encounter any issues, feel free to report them via [issues](https://github.com/i10416/terraform-provider-sendgrid-plus/issues).
 `,
 				Required: true,
 			},

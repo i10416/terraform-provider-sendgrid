@@ -13,8 +13,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/kenzo0107/sendgrid"
-	"github.com/kenzo0107/terraform-provider-sendgrid/flex"
+	"github.com/i10416/sendgrid"
+	"github.com/i10416/terraform-provider-sendgrid-plus/flex"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
