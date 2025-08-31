@@ -9,7 +9,7 @@ import (
 	"log"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/kenzo0107/terraform-provider-sendgrid/internal/provider"
+	"github.com/i10416/terraform-provider-sendgrid-plus/internal/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
@@ -18,9 +18,8 @@ import (
 // ensure the documentation is formatted properly.
 //go:generate terraform fmt -recursive ./examples/
 
-// Run the docs generation tool, check its repository for more information on how it works and how docs
-// can be customized.
-//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs
+//go:generate go tool tfplugindocs generate --provider-dir . -provider-name sendgrid
+//go:generate go tool copywrite headers -d . --config ./.copywrite.hcl
 
 var (
 	// these will be set by the goreleaser configuration
@@ -39,7 +38,7 @@ func main() {
 
 	opts := providerserver.ServeOpts{
 		// TODO: Update this string with the published name of your provider.
-		Address: "registry.terraform.io/kenzo0107/sendgrid",
+		Address: "registry.terraform.io/i10416/sendgrid-plus",
 		Debug:   debug,
 	}
 
