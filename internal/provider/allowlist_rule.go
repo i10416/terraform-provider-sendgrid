@@ -159,6 +159,16 @@ func (r *AllowlistRuleResource) Read(ctx context.Context, req resource.ReadReque
 }
 
 func (r *AllowlistRuleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var data, state apiKeyResourceModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
 func (r *AllowlistRuleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
@@ -168,7 +178,17 @@ func (r *AllowlistRuleResource) Delete(ctx context.Context, req resource.DeleteR
 		return
 	}
 
-	_ = state.ID.ValueInt64()
+	idint64 := state.ID.ValueInt64()
+	_, err := retryOnRateLimit(ctx, func() (interface{}, error) {
+		return nil, r.client.DeleteAllowlistRule(ctx, idint64)
+	})
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Deleting Allowlist Rule",
+			fmt.Sprintf("Unable to delete Allowlist Rule (id: %d), got error: %s", idint64, err),
+		)
+		return
+	}
 }
 
 func (r *AllowlistRuleResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
@@ -184,7 +204,7 @@ func (r *AllowlistRuleResource) ImportState(ctx context.Context, req resource.Im
 		return
 	}
 
-	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
+	resp.Diagnostics.Append(resp.State.SetAttribute(ctx, path.Root("id"), idInt64)...)
 
 	o, err := r.client.GetAllowlistRule(ctx, idInt64)
 	if err != nil {
@@ -199,6 +219,7 @@ func (r *AllowlistRuleResource) ImportState(ctx context.Context, req resource.Im
 		ID: types.Int64Value(idInt64),
 		Ip: types.StringValue(o.Ip),
 	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
