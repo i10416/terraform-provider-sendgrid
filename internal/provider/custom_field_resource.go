@@ -203,7 +203,6 @@ func (r *CustomFieldResource) Delete(ctx context.Context, req resource.DeleteReq
 
 func (r *CustomFieldResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	var data CustomFieldResourceModel
-
 	id := req.ID
 	idInt64, err := strconv.ParseInt(id, 10, 64)
 	if err != nil {
@@ -213,8 +212,7 @@ func (r *CustomFieldResource) ImportState(ctx context.Context, req resource.Impo
 		)
 		return
 	}
-
-	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
+	resp.Diagnostics.Append(resp.State.SetAttribute(ctx, path.Root("id"), idInt64)...)
 
 	o, err := r.client.GetCustomField(ctx, idInt64)
 	if err != nil {
